@@ -1,11 +1,20 @@
 from application.app import app, db
 
-
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    # email = db.Column(db.String(80), unique=True, nullable=False)
-    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(80), unique=True, nullable=True)
+    username = db.Column(db.String(80), unique=True, nullable=True)
     password = db.Column(db.String(120))
+
+class Books(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(80), nullable=True)
+    author = db.Column(db.String(80), nullable=True)
+    genre = db.Column(db.Integer, db.ForeignKey('genre.id'), nullable=True)
+
+class Genre(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    genre = db.Column(db.String(120),nullable=True)
 
 
 # Sample for One-many and Many-Many relationship
